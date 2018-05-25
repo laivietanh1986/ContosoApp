@@ -5,13 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContosoApp.Models;
+using ContosoApp.ViewModels;
 
 namespace ContosoApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public ContosoDbContext ContosoDbContext { get; }
+
+        public HomeController(ContosoDbContext contosoDbContext)
         {
+            ContosoDbContext = contosoDbContext;
+        }
+        public IActionResult Index()
+        {           
             return View();
         }
 

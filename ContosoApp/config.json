@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionStrings": {
+    "ContosoDbContextConnectionString": "Server=.;Database=AdventureWorks;Trusted_Connection=True"
+
+  }
+}
