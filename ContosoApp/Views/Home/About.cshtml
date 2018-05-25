@@ -1,7 +1,16 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@section Scripts{
+    <script src="~/ClientApp/dist/polyfills.js"></script>
+    <script src="~/ClientApp/dist/styles.js"></script>
+    <script src="~/ClientApp/dist/vendor.js"></script>
+    <script src="~/ClientApp/dist/runtime.js"></script>
+    <script src="~/ClientApp/dist/main.js"></script>
+}
+<h1>Person</h1>
+<the-person></the-person>
 
-<p>Use this area to provide additional information.</p>
+
+
+

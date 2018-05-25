@@ -24,8 +24,7 @@ namespace ContosoApp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+           
             return View();
         }
 
@@ -34,7 +33,7 @@ namespace ContosoApp.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
-        }
+        }        
 
         public IActionResult Error()
         {
