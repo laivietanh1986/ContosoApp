@@ -1,23 +1,13 @@
 ﻿import { Component } from "@angular/core";
-
+import { DataService } from "../shared/dataService";
 @Component({
     selector: "person-list",
     templateUrl: 'personList.component.html',
     styleUrls: []
 })
 export class PersonList {
-    public persons = [
-        {
-        BusinessEntityId: 1,
-        FullName: 'Viet Anh'
-        },
-        {
-            BusinessEntityId: 2,
-            FullName: 'Hai Tung'
-        },
-        {
-            BusinessEntityId: 1,
-            FullName: 'Nguyen Hoang'
-        },
-    ];
+    public persons = [];
+    constructor(private data: DataService) {
+        this.persons = data.persons;
+    }
 }

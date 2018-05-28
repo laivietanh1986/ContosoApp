@@ -65,7 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'persons';
+        this.title = 'Contoso';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -95,12 +95,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
 /* harmony import */ var _person_personList_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./person/personList.component */ "./app/person/personList.component.ts");
+/* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/dataService */ "./app/shared/dataService.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -117,7 +119,9 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"]
             ],
-            providers: [],
+            providers: [
+                _shared_dataService__WEBPACK_IMPORTED_MODULE_4__["DataService"]
+            ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -135,7 +139,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <table class=\"table table-bordered table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <th>Business Id</th>\r\n                <th>FullName</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let p of persons\">\r\n                <td>{{p.BusinessEntityId}}</td>\r\n                <td>{{p.FullName}}</td>\r\n            </tr>\r\n        </tbody>\r\n        \r\n    </table>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <table class=\"table table-striped\">\r\n        <thead >\r\n            <tr>\r\n                <th class=\"text-center\">Business Id</th>\r\n                <th class=\"text-center\">Fullname</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let p of persons\">\r\n                <td>{{p.BusinessEntityId}}</td>\r\n                <td>{{p.FullName}}</td>\r\n            </tr>\r\n        </tbody>\r\n        \r\n    </table>\r\n</div>"
 
 /***/ }),
 
@@ -150,15 +154,51 @@ module.exports = "<div class=\"row\">\r\n    <table class=\"table table-bordered
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonList", function() { return PersonList; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/dataService */ "./app/shared/dataService.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var PersonList = /** @class */ (function () {
-    function PersonList() {
+    function PersonList(data) {
+        this.data = data;
+        this.persons = [];
+        this.persons = data.persons;
+    }
+    PersonList = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: "person-list",
+            template: __webpack_require__(/*! ./personList.component.html */ "./app/person/personList.component.html"),
+            styleUrls: []
+        }),
+        __metadata("design:paramtypes", [_shared_dataService__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
+    ], PersonList);
+    return PersonList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/shared/dataService.ts":
+/*!***********************************!*\
+  !*** ./app/shared/dataService.ts ***!
+  \***********************************/
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+var DataService = /** @class */ (function () {
+    function DataService() {
         this.persons = [
             {
                 BusinessEntityId: 1,
@@ -174,14 +214,7 @@ var PersonList = /** @class */ (function () {
             },
         ];
     }
-    PersonList = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: "person-list",
-            template: __webpack_require__(/*! ./personList.component.html */ "./app/person/personList.component.html"),
-            styleUrls: []
-        })
-    ], PersonList);
-    return PersonList;
+    return DataService;
 }());
 
 
