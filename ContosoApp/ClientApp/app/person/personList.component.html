@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="btn btn-default">Business Id</th>
+                <th class="btn btn-default">FullName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of persons">
+                <td>{{p.BusinessEntityId}}</td>
+                <td>{{p.FullName}}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
