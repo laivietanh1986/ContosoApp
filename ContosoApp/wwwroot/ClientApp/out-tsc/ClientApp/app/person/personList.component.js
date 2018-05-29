@@ -17,6 +17,15 @@ var PersonList = /** @class */ (function () {
         this.persons = [];
         this.persons = data.persons;
     }
+    PersonList.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.loadPerson()
+            .subscribe(function (success) {
+            if (success) {
+                _this.persons = _this.data.persons;
+            }
+        });
+    };
     PersonList = __decorate([
         core_1.Component({
             selector: "person-list",
