@@ -21,14 +21,15 @@ namespace ContosoApp.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = ContosoDbContext.Persons.Select(x => new PersonInformation()
+            var result = ContosoDbContext.Persons.Take(10).Select(x => new PersonInformation()
             {
                 BusinessEntityId = x.BusinessEntityID,
-                FullName = $"{x.FirstName} {x.MiddleName} {x.LastName}"
+                FullName = $"{x.FirstName} {x.MiddleName} {x.LastName}",
+                Email = x.EmailAddresses.Any()?string.Join(" / ",x.EmailAddresses.Select(e=>e.EmailAddress)):string.Empty,
+                PhoneNumber = x.PersonPhones.Any()?string.Join(" or ",x.PersonPhones.Select(p=>p.PhoneNumber)):string.Empty
             });
             return Json(result);
-        }
-        
+        }       
 
         
     }

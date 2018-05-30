@@ -27,8 +27,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\person\personList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\dataService.ts" />
-    <TypeScriptCompile Include="ClientApp\Model\Person.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\Person.ts" />
     <TypeScriptCompile Include="wwwroot\ts\storeperson.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\Model\" />
   </ItemGroup>
 
 </Project>

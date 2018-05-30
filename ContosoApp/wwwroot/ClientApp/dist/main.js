@@ -142,7 +142,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <table class=\"table table-striped\">\r\n        <thead >\r\n            <tr>\r\n                <th class=\"text-center\">Business Id</th>\r\n                <th class=\"text-center\">Fullname</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let p of persons\">\r\n                <td>{{p.businessEntityId}}</td>\r\n                <td>{{p.fullName}}</td>\r\n            </tr>\r\n        </tbody>\r\n        \r\n    </table>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <table class=\"table table-striped\">\r\n        <thead >\r\n            <tr>\r\n                <th class=\"text-center\">Business Id</th>\r\n                <th class=\"text-center\">Fullname</th>\r\n                <th class=\"text-center\">Email</th>\r\n                <th class=\"text-center\">Phone</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let p of persons\">\r\n                <td>{{p.businessEntityId}}</td>\r\n                <td>{{p.fullName}}</td>\r\n                <td>{{p.email}}</td>\r\n                <td>{{p.phoneNumber}}</td>\r\n            </tr>\r\n        </tbody>\r\n        \r\n    </table>\r\n</div>"
 
 /***/ }),
 

@@ -14,9 +14,21 @@ namespace ContosoApp.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Person");
+            modelBuilder.Entity<Person>()
+                 .HasMany(x => x.PersonPhones)
+                 .WithOne(x => x.Person)
+                 .HasForeignKey(x => x.BusinessEntityID);
+            modelBuilder.Entity<Person>()
+                 .HasMany(x => x.EmailAddresses)
+                 .WithOne(x => x.Person)
+                 .HasForeignKey(x => x.BusinessEntityID);
+
+
         }
        public DbSet<Person> Persons { get; set; }
+       public DbSet<EmailAddresses> EmailAddresses { get; set; }
+       public DbSet<PersonPhone> PersonPhones { get; set; }
+
 
     }
 }

@@ -19,7 +19,7 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.loadPerson = function () {
         var _this = this;
-        return this.http.get('/api/person/Get')
+        return this.http.get('/api/person')
             .pipe(operators_1.map(function (data) {
             _this.persons = data;
             return true;

@@ -4,12 +4,16 @@
             <tr>
                 <th class="text-center">Business Id</th>
                 <th class="text-center">Fullname</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Phone</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let p of persons">
                 <td>{{p.businessEntityId}}</td>
                 <td>{{p.fullName}}</td>
+                <td>{{p.email}}</td>
+                <td>{{p.phoneNumber}}</td>
             </tr>
         </tbody>
         
