@@ -6,7 +6,7 @@ import { Person } from "../shared/Person";
     templateUrl: 'personList.component.html',
     styleUrls: []
 })
-export class PersonList implements OnInit {
+export class PersonListComponent implements OnInit {
     public persons:Person[] = [];
     constructor(private data: DataService) {
         this.persons = data.persons;

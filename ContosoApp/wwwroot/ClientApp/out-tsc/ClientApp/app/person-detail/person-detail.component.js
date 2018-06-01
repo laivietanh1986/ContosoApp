@@ -10,31 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var dataService_1 = require("../shared/dataService");
-var PersonListComponent = /** @class */ (function () {
-    function PersonListComponent(data) {
-        this.data = data;
-        this.persons = [];
-        this.persons = data.persons;
+var PersonDetailComponent = /** @class */ (function () {
+    function PersonDetailComponent() {
     }
-    PersonListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.data.loadPerson()
-            .subscribe(function (success) {
-            if (success) {
-                _this.persons = _this.data.persons;
-            }
-        });
+    PersonDetailComponent.prototype.ngOnInit = function () {
     };
-    PersonListComponent = __decorate([
+    PersonDetailComponent = __decorate([
         core_1.Component({
-            selector: "person-list",
-            templateUrl: 'personList.component.html',
-            styleUrls: []
+            selector: 'app-person-detail',
+            templateUrl: './person-detail.component.html',
+            styleUrls: ['./person-detail.component.css']
         }),
-        __metadata("design:paramtypes", [dataService_1.DataService])
-    ], PersonListComponent);
-    return PersonListComponent;
+        __metadata("design:paramtypes", [])
+    ], PersonDetailComponent);
+    return PersonDetailComponent;
 }());
-exports.PersonListComponent = PersonListComponent;
-//# sourceMappingURL=personList.component.js.map
+exports.PersonDetailComponent = PersonDetailComponent;
+//# sourceMappingURL=person-detail.component.js.map

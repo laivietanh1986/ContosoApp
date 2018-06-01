@@ -10,8 +10,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let p of persons">
-                <td>{{p.businessEntityId}}</td>
-                <td>{{p.fullName}}</td>
+                <td>
+                    {{p.businessEntityId}}
+                </td>
+                <td>
+                    <a routerLink="/detail/{{p.businessEntityId}}">{{p.fullName}}</a>
+
+                </td>
                 <td>{{p.email}}</td>
                 <td>{{p.phoneNumber}}</td>
             </tr>

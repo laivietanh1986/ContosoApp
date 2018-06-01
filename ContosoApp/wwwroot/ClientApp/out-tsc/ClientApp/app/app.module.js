@@ -12,6 +12,8 @@ var http_1 = require("@angular/common/http");
 var app_component_1 = require("./app.component");
 var personList_component_1 = require("./person/personList.component");
 var dataService_1 = require("./shared/dataService");
+var app_routing_module_1 = require("./app-routing/app-routing.module");
+var person_detail_component_1 = require("./person-detail/person-detail.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -19,11 +21,13 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                personList_component_1.PersonList
+                personList_component_1.PersonListComponent,
+                person_detail_component_1.PersonDetailComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                app_routing_module_1.AppRoutingModule
             ],
             providers: [
                 dataService_1.DataService
