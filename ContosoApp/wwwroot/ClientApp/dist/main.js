@@ -204,7 +204,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  person-detail works!\n</p>\n"
+module.exports = "<div class=\"form-inline\">\r\n   \r\n    <p>{{person.nameStyle}}</p>\r\n      \r\n   \r\n   \r\n    <p>{{person.fullName}}</p>\r\n        \r\n    \r\n    <p>{{person.personType}}</p>        \r\n    \r\n    <p>{{person.email}}</p>\r\n        \r\n    \r\n        <p>{{person.phoneNumber}}</p>\r\n        \r\n    \r\n        <p>{{person.emailPromotion}}</p>\r\n        \r\n    \r\n\r\n\r\n    </div>\r\n"
 
 /***/ }),
 
@@ -219,6 +219,10 @@ module.exports = "<p>\n  person-detail works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonDetailComponent", function() { return PersonDetailComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/dataService */ "./app/shared/dataService.ts");
+/* harmony import */ var _shared_Person__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/Person */ "./app/shared/Person.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -229,18 +233,42 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var PersonDetailComponent = /** @class */ (function () {
-    function PersonDetailComponent() {
+    function PersonDetailComponent(route, location, data) {
+        this.route = route;
+        this.location = location;
+        this.data = data;
     }
     PersonDetailComponent.prototype.ngOnInit = function () {
+        this.getPerson();
     };
+    PersonDetailComponent.prototype.getPerson = function () {
+        var _this = this;
+        var id = +this.route.snapshot.paramMap.get('id');
+        this.data.getPerson(id)
+            .subscribe(function (success) {
+            if (success) {
+                _this.person = _this.data.person;
+            }
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _shared_Person__WEBPACK_IMPORTED_MODULE_4__["Person"])
+    ], PersonDetailComponent.prototype, "person", void 0);
     PersonDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-person-detail',
             template: __webpack_require__(/*! ./person-detail.component.html */ "./app/person-detail/person-detail.component.html"),
             styles: [__webpack_require__(/*! ./person-detail.component.css */ "./app/person-detail/person-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
+            _shared_dataService__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
     ], PersonDetailComponent);
     return PersonDetailComponent;
 }());
@@ -313,6 +341,26 @@ var PersonListComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/shared/Person.ts":
+/*!******************************!*\
+  !*** ./app/shared/Person.ts ***!
+  \******************************/
+/*! exports provided: Person */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Person", function() { return Person; });
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    return Person;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/shared/dataService.ts":
 /*!***********************************!*\
   !*** ./app/shared/dataService.ts ***!
@@ -325,7 +373,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Person */ "./app/shared/Person.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "../node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -338,16 +387,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
         this.persons = [];
+        this.person = new _Person__WEBPACK_IMPORTED_MODULE_2__["Person"]();
     }
     DataService.prototype.loadPerson = function () {
         var _this = this;
         return this.http.get('/api/person')
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
             _this.persons = data;
+            return true;
+        }));
+    };
+    DataService.prototype.getPerson = function (id) {
+        var _this = this;
+        return this.http.get('/api/person/' + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            _this.person = data;
             return true;
         }));
     };

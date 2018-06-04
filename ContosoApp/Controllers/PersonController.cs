@@ -8,6 +8,7 @@ using ContosoApp.Models;
 using ContosoApp.ViewModels;
 using ContosoApp.Helper;
 using ContosoApp.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoApp.Controllers
 {
@@ -37,7 +38,10 @@ namespace ContosoApp.Controllers
         [Route("api/Person/{id}")]
         public IActionResult Get(int id)
         {
-            var person = ContosoDbContext.Persons.Find(id);
+            var person = ContosoDbContext.Persons
+               .Include(x=>x.EmailAddresses)
+               .Include(x=>x.PersonPhones)
+                .FirstOrDefault(x=>x.BusinessEntityID == id);
             var result = new PersonInformationDetail
             {
                 BusinessEntityId = person.BusinessEntityID,
@@ -46,8 +50,7 @@ namespace ContosoApp.Controllers
                 PhoneNumber = person.PersonPhones.Any() ? string.Join(" or ", person.PersonPhones.Select(p => p.PhoneNumber)) : string.Empty,
                 PersonType = EnumHelper.GetDescription<PersonType>((PersonType)Enum.Parse(typeof(PersonType), person.PersonType)),
                 NameStyle = person.NameStyle?EnumHelper.GetDescription<NameStyle>(NameStyle.ES): EnumHelper.GetDescription<NameStyle>(NameStyle.WS),
-                EmailPromation = EnumHelper.GetDescription<EmailPromotion>((EmailPromotion)person.EmailPromotion),
-
+                emailPromotion = EnumHelper.GetDescription<EmailPromotion>((EmailPromotion)person.EmailPromotion),
             };          
             
             return Json(result);

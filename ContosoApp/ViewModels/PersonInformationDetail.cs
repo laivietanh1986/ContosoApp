@@ -9,7 +9,7 @@ namespace ContosoApp.ViewModels
     {
         public string PersonType { get; set; }
         public string NameStyle { get; set; }
-        public string EmailPromation { get; set; }
+        public string emailPromotion { get; set; }
         
 
 

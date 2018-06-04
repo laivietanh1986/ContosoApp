@@ -11,17 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
+var Person_1 = require("./Person");
 var operators_1 = require("rxjs/operators");
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
         this.persons = [];
+        this.person = new Person_1.Person();
     }
     DataService.prototype.loadPerson = function () {
         var _this = this;
         return this.http.get('/api/person')
             .pipe(operators_1.map(function (data) {
             _this.persons = data;
+            return true;
+        }));
+    };
+    DataService.prototype.getPerson = function (id) {
+        var _this = this;
+        return this.http.get('/api/person/' + id)
+            .pipe(operators_1.map(function (data) {
+            _this.person = data;
             return true;
         }));
     };

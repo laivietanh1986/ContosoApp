@@ -12,7 +12,7 @@ namespace ContosoApp.Models
     {
         [Key]
         public int BusinessEntityID { get; set; }
-        public int EmailAddressId { get; set; }
+        public int EmailAddressId { get; set; }      
         public string EmailAddress { get; set; }
         public virtual Person Person { get; set; }
 
